@@ -1,0 +1,19 @@
+{
+  "name": "jrn",
+  "version": "0.1.0",
+  "description": "jira cli",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lars Härig",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.6.1",
+    "chalk": "^2.4.2",
+    "config": "^3.0.1",
+    "inquirer": "^6.2.1",
+    "jira": "^0.10.0",
+    "toml": ">=2.3.0"
+  }
+}

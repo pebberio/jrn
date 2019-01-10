@@ -1,0 +1,13 @@
+[Jira]
+protocol = "https"
+host = "myhost.tld"
+port = 443
+username = ""
+password = ""
+projects = ["PROJECT1","PROJECT2"]
+issueTypes = ["1","3"]
+
+[Sprint]
+rapidView = 1
+customFieldId = 10001
+state = active,future
