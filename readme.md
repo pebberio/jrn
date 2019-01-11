@@ -1,8 +1,10 @@
 # jrn.js
 Node Module to create issues in jira by ease
 
-*STATE: alpha*
+BETA: jrn is working as expected.
+It creates an issue, assigns a sprint and execute an optional post transition. 
 
+![Screenshot](./screenshot.gif)
 
 ## Requirements
 * [node](https://nodejs.org/)

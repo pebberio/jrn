@@ -10,4 +10,4 @@ issueTypes = ["1","3"]
 [Sprint]
 rapidView = 1
 customFieldId = 10001
-state = active,future
+state = "active,future"
