@@ -68,10 +68,53 @@ function renderIssueTypes(types) {
   return ret;
 }
 
+function renderTransitions(transitions) {
+  var ret = [];
+  ret.push("NO THANKS");
+  for (var transition in transitions) {
+    var data = transitions[transition];
+    ret.push(data.id + ': ' + data.name);
+  }
+  return ret;
+}
+
+function transitionPrompt(issueKey) {
+  jira.listTransitions(issueKey, function (error, res) {
+    var transitions = renderTransitions(res);
+    if (transitions.length == 0) {
+      exit("No transitions found");
+    }
+
+    var prompts = [{
+      type: 'list',
+      name: 'transition',
+      message: 'Do you want to execute a transition',
+      choices: transitions,
+      filter: function (value) {
+        return value === "NO THANKS" ? "" : value.split(':').shift();
+      }
+    }];
+
+    var prompt = inquirer.createPromptModule();
+
+    // start asking the user
+    prompt(prompts).then(answers => {
+      if (answers.transition) {
+        jira.transitionIssue(issueKey, {"transition": {"id": answers.transition}}, function (error, res) {
+          if (error) {
+            exit("Transition failed " + error)
+          }
+          if (res.statusCode !== 200) {
+            console.log(chalk.green('Transition successfully executed'));
+          }
+        });
+      }
+    });
+  });
+}
+
 /* START
  * *************************/
-
-
 console.log("");
 
 // start synchron functions
@@ -214,7 +257,6 @@ async.series({
       issue["fields"]["customfield_" + config.get('Sprint.customFieldId')] = parseInt(answers.sprint);
     }
 
-
     // create issue in jira
     jira.addNewIssue(issue, function (err, res) {
       line();
@@ -224,6 +266,9 @@ async.series({
         console.log("KEY: " + res.key);
         console.log("URL: " + chalk.green(config.get('Jira.protocol') + "://" + config.get('Jira.host') + ":" + config.get('Jira.port') + "/browse/" + res.key) + " (cmd+click)");
         //console.log("API: " + res.self);
+
+        transitionPrompt(res.key);
+
       } else {
         console.log("an error occured");
         line();
