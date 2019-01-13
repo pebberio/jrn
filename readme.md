@@ -45,7 +45,6 @@ jrn
 * config by env vars
 * config by ~/.jrn/config
 * config and execution with profiles like aws-cli
-* multiple lines for description (vim mode)
 * refactoring / cleanup / tweaks
 
 

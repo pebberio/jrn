@@ -59,7 +59,7 @@ async.series({
   }, {
     type: 'list',
     name: 'issueType',
-    message: 'Choose a issue type',
+    message: 'Choose an issue type',
     choices: res.getIssueTypes
   }, {
     name: 'title',
@@ -70,10 +70,18 @@ async.series({
       return (value !== "");
     }
   }, {
+    name: 'description_wanted',
+    message: 'Do you want to add a description',
+    type: 'confirm',
+    default: false
+  }, {
     name: 'description',
     message: 'Issue description',
     description: '',
-    type: 'string'
+    type: 'editor',
+    when: function( answers ) {
+      return answers.description_wanted;
+    }
   }, {
     type: 'list',
     name: 'sprint',
