@@ -28,7 +28,7 @@ vim config/default.toml;
 ### create alias
 ```bash
 # add "jrn" as alias to the shell
-echo "jrn='node ~/workspace/jrn/app.js'" >> ~/.bashrc
+echo "jrn='~/workspace/jrn/bin/jrn'" >> ~/.bashrc
 
 # Test des Alias
 ## reload bashrc and call jrn
