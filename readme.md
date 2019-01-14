@@ -18,10 +18,10 @@ npm install;
 ### config 
 ```bash
 # create your custom config
-cp config/default.toml.dist config/default.toml;
+cp src/config/default.toml.dist src/config/default.toml;
 
 # modify your local configuration
-vim config/default.toml;
+vim src/config/default.toml;
 ```
 
 
@@ -29,7 +29,7 @@ vim config/default.toml;
 
 You can define profiles in your config file.
 Simply add a postfix to the categries as mentioned in the 
-[config/default.toml.dist](src/config/default.toml.dist) like *[Jira_profile]* and *[Sprint_profile]*
+[src/config/default.toml.dist](src/config/default.toml.dist) like *[Jira_profile]* and *[Sprint_profile]*
 
 A profile will get active, when the environment variable `JRN_PRPFILE` ist set.
 ```

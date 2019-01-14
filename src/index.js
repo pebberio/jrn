@@ -8,7 +8,7 @@ var async = require("async");
 var helper = require("./helper");
 var promptTransition = require("./prompt-transition");
 
-var jira = require('./jira').setup;
+var jira = require('./jira-login').setup;
 
 let BACKLOG_KEY = "BACKLOG";
 
