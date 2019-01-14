@@ -12,7 +12,6 @@
   "author": "Lars Härig",
   "license": "MIT",
   "dependencies": {
-    "async": "^2.6.1",
     "chalk": "^2.4.2",
     "config": "^3.0.1",
     "inquirer": "^6.2.1",

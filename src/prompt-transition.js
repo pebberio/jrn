@@ -1,8 +1,9 @@
 var helper = require("./helper");
 var chalk = require('chalk');
 var inquirer = require("inquirer");
+var jira = require('./jira-login').setup();
 
-let NO_THANKS_KEY = "NO THANKS";
+const NO_THANKS_KEY = "NO THANKS";
 
 function renderTransitions(transitions, NO_THANKS_KEY) {
   var ret = transitions.map(transition => transition.id + ': ' + transition.name);
@@ -11,7 +12,7 @@ function renderTransitions(transitions, NO_THANKS_KEY) {
 }
 
 module.exports = {
-  runWith: function (jira, issueKey) {
+  runWith: function (issueKey) {
     jira.listTransitions(issueKey, function (error, res) {
       let transitions = renderTransitions(res, NO_THANKS_KEY);
       if (transitions.length >= 1) {

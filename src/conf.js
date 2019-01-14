@@ -18,5 +18,6 @@ module.exports = {
   },
   sprint: function(name) {
     return valueOf(CONFIG_SPRINT_KEY,  name);
-  }
+  },
+  BACKLOG_KEY: "BACKLOG"
 };
