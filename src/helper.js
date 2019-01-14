@@ -1,4 +1,4 @@
-var config = require("config");
+var conf = require("./conf");
 var chalk = require('chalk');
 
 module.exports = {
@@ -22,13 +22,13 @@ module.exports = {
   },
   renderProjects: function (projects) {
     return this.verifyLengthOf(
-      projects.filter(project => config.get('Jira.projects').indexOf(project.key) >= 0)
+      projects.filter(project => conf.jira('projects').indexOf(project.key) >= 0)
         .map(project => project.key),
       'Project');
   },
   renderIssueTypes: function (issueTypes) {
     return this.verifyLengthOf(
-      issueTypes.filter(issueType => config.get('Jira.issueTypes').indexOf(issueType.id) >= 0)
+      issueTypes.filter(issueType => conf.jira('issueTypes').indexOf(issueType.id) >= 0)
         .map(issueType => issueType.name),
       'Type');
   },
@@ -57,7 +57,7 @@ module.exports = {
       }
     };
     if (answers.sprint !== "") {
-      issue["fields"]["customfield_" + config.get('Sprint.customFieldId')] = parseInt(answers.sprint);
+      issue["fields"]["customfield_" + conf.sprint('customFieldId')] = parseInt(answers.sprint);
     }
     return issue;
   },
@@ -66,7 +66,7 @@ module.exports = {
     console.log(chalk.green("Issue has been created"));
     this.line();
     console.log("KEY: " + issue.key);
-    console.log("URL: " + chalk.green(config.get('Jira.protocol') + "://" + config.get('Jira.host') + ":" + config.get('Jira.port') + "/browse/" + issue.key) + " (cmd+click)");
+    console.log("URL: " + chalk.green(conf.jira('protocol') + "://" + conf.jira('host') + ":" + conf.jira('port') + "/browse/" + issue.key) + " (cmd+click)");
     this.line();
   }
 };

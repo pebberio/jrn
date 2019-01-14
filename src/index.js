@@ -2,22 +2,13 @@
 
 // settings
 process.chdir(__dirname);
-var config = require("config");
-var JiraApi = require('jira').JiraApi;
+var conf = require("./conf");
 var inquirer = require("inquirer");
 var async = require("async");
 var helper = require("./helper");
 var promptTransition = require("./prompt-transition");
 
-var jira = new JiraApi(
-  config.get('Jira.protocol'),
-  config.get('Jira.host'),
-  config.get('Jira.port'),
-  config.get('Jira.username'),
-  config.get('Jira.password'),
-  '2',
-  true,
-  false);
+var jira = require('./jira').setup;
 
 let BACKLOG_KEY = "BACKLOG";
 
@@ -41,7 +32,7 @@ async.series({
   getSprints: function (callback) {
     var options = {
       rejectUnauthorized: jira.strictSSL,
-      uri: jira.makeUri("/board/" + config.get('Sprint.rapidView') + "/sprint?state=" + config.get("Sprint.state"), "rest/agile/", "1.0"),
+      uri: jira.makeUri("/board/" + conf.sprint('rapidView') + "/sprint?state=" + conf.sprint('state'), "rest/agile/", "1.0"),
       method: 'GET',
       json: true
     };
