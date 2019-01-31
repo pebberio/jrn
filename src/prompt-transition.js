@@ -1,15 +1,17 @@
-var helper = require("./helper");
-var chalk = require('chalk');
-var inquirer = require("inquirer");
-var jira = require('./jira-login').setup();
+import helper from "./helper";
+import chalk from "chalk";
+import inquirer from "inquirer";
+import {setup} from "./jira-login";
+
+const jira = setup();
 
 const NO_THANKS_KEY = "NO THANKS";
 
-function renderTransitions(transitions, NO_THANKS_KEY) {
+const renderTransitions = (transitions, NO_THANKS_KEY) => {
   var ret = transitions.map(transition => transition.id + ': ' + transition.name);
   ret.unshift(NO_THANKS_KEY);
   return ret;
-}
+};
 
 module.exports = {
   runWith: function (issueKey) {

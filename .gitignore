@@ -1,5 +1,6 @@
 default.toml
 .idea
+dist
 
 # OSX SPECIFIC
 # General

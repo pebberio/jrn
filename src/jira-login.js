@@ -1,5 +1,5 @@
-var conf = require("./conf");
-var JiraApi = require('jira').JiraApi;
+import conf from "./conf";
+import {JiraApi} from "jira";
 
 let jira;
 

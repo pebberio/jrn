@@ -1,5 +1,5 @@
-var conf = require("./conf");
-var resources = require("./resources");
+import conf from "./conf";
+import resources from "./resources";
 
 module.exports = [{
   type: 'list',

@@ -1,6 +1,8 @@
-var jira = require('./jira-login').setup();
-var conf = require('./conf');
-var helper = require('./helper');
+import {setup} from "./jira-login";
+import conf from "./conf";
+import helper from "./helper";
+
+const jira = setup();
 
 module.exports =  {
   getProjects: function(answers) {

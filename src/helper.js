@@ -1,5 +1,5 @@
-var conf = require("./conf");
-var chalk = require('chalk');
+import conf from "./conf";
+import chalk from "chalk";
 
 module.exports = {
   line: function () {
@@ -28,7 +28,7 @@ module.exports = {
   },
   renderIssueTypes: function (issueTypes) {
     return this.verifyLengthOf(
-      issueTypes.filter(issueType => conf.jira('issueTypes').indexOf(issueType.id) >= 0)
+      issueTypes.filter(issueType => conf.jira('issueTypes').indexOf(parseInt(issueType.id)) >= 0)
         .map(issueType => issueType.name),
       'Type');
   },
